@@ -15,6 +15,33 @@ function App(props) {
     console.log("OnChange was clicked");
     setText(event.target.value);
   }
+  
+   const  [myStyle, setmyStyle] = useState({
+    backgroundColor : "white",
+    color : "black",
+   });
+   const  [btnText, setbtnText] = useState("Enable Dark Mode");
+  
+
+  const toggleStyle= ()=>{
+    if(myStyle.color == "black"){
+      setmyStyle({
+        backgroundColor : "black",
+       color : "white",
+      })
+      setbtnText("Enable Light Mode");
+
+    }
+    else{
+     setmyStyle({
+        backgroundColor : "white",
+       color : "black",
+      })
+      setbtnText("Enable Dark Mode");
+    }
+  }
+
+ 
 
 
   return (
@@ -54,22 +81,74 @@ function App(props) {
       </form>
     </div>
   </div>
-</nav>
+  </nav>
 
-<div className="container">
-<div className="mb-3">
+    <div className="container">
+    <div className="mb-3">
   <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
   <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
-</div>
-<div className="mb-3">
+    </div>
+    <div className="mb-3">
   <label htmlFor="exampleFormControlTextarea1" className="form-label" >Example textarea</label>
   <textarea className="form-control" onChange={handleonChange} value={text} id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-<button className="btn btn-primery" onClick={handleUpClick}>Convert to Uppercase</button>
+  </div>
+   <button className="btn btn-primery" onClick={handleUpClick}>Convert to Uppercase</button>
 
-</div>
-</>
+  </div>
+   <div className="container my-3" >
+  <h6>Your Text Summary</h6>
+  <p>{text.split(" ").length} word and {text.length} character</p>
+  <p>{0.008 * text.split(" ").length}</p>
+   </div>
+
+
+   <div className="container" style={myStyle}>
+   <div style={myStyle} className="accordion" id="accordionExample">
+  <h1>About Us</h1>
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button style={myStyle} className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div style={myStyle} id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
+        <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button style={myStyle} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
+        <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button style={myStyle} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
+        <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+    </div>
+  <div className="btn my-3">
+   <button onClick={toggleStyle} type="button" className="btn btn-primary">{btnText}</button>
+   </div>
+   </div>
+
+    </>
   )
-}
+ }
 
 export default App
